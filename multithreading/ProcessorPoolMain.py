@@ -4,7 +4,7 @@ import os
 from queue import Queue
 from threading import Thread
 from time import time
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor
 import requests
 import shutil
 import json
@@ -36,7 +36,7 @@ def downloadImage(category):
 def main():
     ts = time()
     categories = ['nature', 'animal', 'building','waterfall']    
-    with ThreadPoolExecutor() as executor:
+    with ProcessPoolExecutor() as executor:
         executor.map(downloadImage, categories, timeout=30)
     logging.info('Took %s seconds', time() - ts)
 
