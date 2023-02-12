@@ -17,7 +17,7 @@ def getlinks(categories):
     return links
 
 def download_images(unsplash_api_key, link, category):
-    for i in range(0,5):
+    for i in range(0,100):
         download_dir = os.path.basename(setup_download_dir(category=category))
         download_path = '{download_dir}/{category}_{index}.jpg'.format(download_dir=download_dir,category=category,index=i)
         logger.info('downloading %s', link)

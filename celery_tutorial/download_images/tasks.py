@@ -1,7 +1,7 @@
 import random
 from celery import shared_task
 from .downloadImage import setup_download_dir, getlinks, download_images
-from .Main import main
+from .Main import main, download_images2
 import logging
 import os
 from queue import Queue
@@ -11,6 +11,7 @@ from time import time
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
 logger = logging.getLogger(__name__)
+
 
 
 @shared_task
@@ -41,6 +42,11 @@ def downloadImages():
         download_images(unsplash_api_key, link, category)
     logging.info('Took %s seconds', time() - ts)
 
-@shared_task(name='downloadImagesWithThreading')
-def downloadImagesWithThreading():
+@shared_task(name='downloadImagesWithThreading1')
+def downloadImagesWithThreading1():
     main()
+
+
+@shared_task(name='downloadImagesWithThreading2')
+def downloadImagesWithThreading2():
+    download_images2()
