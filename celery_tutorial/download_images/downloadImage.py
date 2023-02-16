@@ -16,6 +16,10 @@ def getlinks(categories):
         links[url] = category
     return links
 
+def getLinkFromQuery(category):
+    url = 'https://api.api-ninjas.com/v1/randomimage?category='+category
+    return url
+
 def download_images(unsplash_api_key, link, category):
     for i in range(0,100):
         download_dir = os.path.basename(setup_download_dir(category=category))

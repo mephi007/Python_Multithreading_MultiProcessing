@@ -1,5 +1,5 @@
 import random
-from celery import shared_task
+from celery import shared_task, task
 from .downloadImage import setup_download_dir, getlinks, download_images
 from .Main import main, download_images2
 import logging
@@ -47,6 +47,6 @@ def downloadImagesWithThreading1():
     main()
 
 
-@shared_task(name='downloadImagesWithThreading2')
+@task(name='downloadImagesWithThreading2')
 def downloadImagesWithThreading2():
     download_images2()
